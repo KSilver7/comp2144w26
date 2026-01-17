@@ -43,6 +43,16 @@
             const box = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
             const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
             sphere.position.y = 2;
+            // added shape number 1
+            const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {height: 2, diameter: 1}, scene);
+            cylinder.position.x = -2;
+            // added shape number 2
+            const donut = BABYLON.MeshBuilder.CreateTorus("donut", {thickness: 1, diameter: 2}, scene);
+            donut.position.x = 6;
+            // added shape number 3
+            const cone = BABYLON.MeshBuilder.CreateCylinder("cone", {height: 2, diameterTop: 0, diameterBottom: 1}, scene);
+            cone.position.y = 6;
+
             let material = new BABYLON.StandardMaterial("material", scene);
             material.diffuseColor = new BABYLON.Color3(1.0, 0.0, 0.0);
             sphere.material = material;
