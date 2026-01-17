@@ -52,6 +52,14 @@
             // added shape number 3
             const cone = BABYLON.MeshBuilder.CreateCylinder("cone", {height: 2, diameterTop: 0, diameterBottom: 1}, scene);
             cone.position.y = 4;
+            // added shape number 4
+            // giving the pyramid a tessellation of 4 do that its got its 4 flat sides to make it look more like a pyramid
+            const pyramid = BABYLON.MeshBuilder.CreateCylinder("pyramid", {height: 1, diameterTop: 0, diameterBottom: 1, tessellation: 4}, scene);
+            pyramid.position.x = -4;
+            // added shape number 5
+            const hexagon = BABYLON.MeshBuilder.CreateCylinder("hexagon", {height: 1, diameter: 1, tessellation: 6}, scene);
+            hexagon.position.x = -3;
+            hexagon.position.y = 3;
 
             let material = new BABYLON.StandardMaterial("material", scene);
             material.diffuseColor = new BABYLON.Color3(1.0, 0.0, 0.0);
