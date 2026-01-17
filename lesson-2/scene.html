@@ -40,26 +40,26 @@
         const createScene = function() {
             // STEP 8a: Create a new BABYLON scene, passing in the engine as an argument
             const scene = new BABYLON.Scene(engine);
-            const box = BABYLON.MeshBuilder.CreateBox("box", {}); // Create box mesh object
+            const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene); // Create box mesh object
             const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
             sphere.position.y = 2;
             // added shape number 1
             const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", {height: 2, diameter: 1}, scene);
-            cylinder.position.x = -2;
+            cylinder.position.y = -2;
             // added shape number 2
             const donut = BABYLON.MeshBuilder.CreateTorus("donut", {thickness: 1, diameter: 2}, scene);
-            donut.position.x = 6;
+            donut.position.x = 5;
             // added shape number 3
             const cone = BABYLON.MeshBuilder.CreateCylinder("cone", {height: 2, diameterTop: 0, diameterBottom: 1}, scene);
-            cone.position.y = 6;
+            cone.position.y = 4;
 
             let material = new BABYLON.StandardMaterial("material", scene);
             material.diffuseColor = new BABYLON.Color3(1.0, 0.0, 0.0);
             sphere.material = material;
-            // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); // Add Arc Rotate Camera
-            // camera.attachControl(canvas, true); // Attach camera control to the canvas
+            const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); // Add Arc Rotate Camera
+            camera.attachControl(canvas, true); // Attach camera control to the canvas
             // Replace the above camera with the below XR if you have a headset
-            const xr = scene.createDefaultXRExperienceAsync();
+            // const xr = scene.createDefaultXRExperienceAsync();
  
             const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
             // STEP 8b: Return the scene
