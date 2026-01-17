@@ -90,6 +90,9 @@
             let material6 = new BABYLON.StandardMaterial("material6", scene);
             material6.diffuseColor = new BABYLON.Color3(0.0, 1.0, 1.0); // cyan
             hexagon.material = material6;
+            
+            // here we're going to change the background via clearColor property of the scene. But I want to use a hex value because they're pretty. So instead of color 3 we use color 4
+            scene.clearColor = new BABYLON.Color4.FromHexString("#f5f7a8"); // light yellow colour background
 
             const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); // Add Arc Rotate Camera
             camera.attachControl(canvas, true); // Attach camera control to the canvas
