@@ -15,7 +15,10 @@ const createScene = async function() {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
     
     // STEP 1: Add a ground
-
+    const ground = new BABYLON.MeshBuilder.CreateGround("ground", {
+        width: 10,
+        height: 10
+    })
     // STEP 9: Colour the ground
     
 
