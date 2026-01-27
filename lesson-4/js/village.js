@@ -8,9 +8,9 @@ const createScene = async function() {
     const scene = new BABYLON.Scene(engine);
     
     // Add a camera and allow it to control the canvas
-    // const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); 
+    const camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 2.5, 15, new BABYLON.Vector3(0, 0, 0)); 
     // Add Arc Rotate Camera
-    // camera.attachControl(canvas, true);
+    camera.attachControl(canvas, true);
     
     // Include a light
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
@@ -24,14 +24,19 @@ const createScene = async function() {
     const groundMat = new BABYLON.StandardMaterial("groundMat");
     groundMat.diffuseColor = new BABYLON.Color3(0.3, 0.4, 0.2);
     ground.material = groundMat;
+
     // STEP 12b: Add an array to position the image properly on each of the four visible sides (notice we will not set 4 and 5)
-    //options parameter to set different images on each side
-       
+    const faceUV = [];
+    // Vector points are (x, y for bottom left and x,y for top right)
+    faceUV[0] = new BABYLON.Vector4(0.4, 0.0, 0.6, 1.0); // rear face
+    faceUV[1] = new BABYLON.Vector4(0.3, 0.0, 0.5, 1.0); // front face
+    faceUV[2] = new BABYLON.Vector4(0.6, 0.0, 1.0, 1.0); // right side
+    faceUV[3] = new BABYLON.Vector4(0.0, 0.0, 0.4, 1.0); // left side
 
     // STEP 2: Add a box to serve as a house
-    const box = new BABYLON.MeshBuilder.CreateBox("box", {});
+    // const box = new BABYLON.MeshBuilder.CreateBox("box", {});
     // STEP 12c: Change the above declaration to include a material wrap
-    
+    const box = new BABYLON.MeshBuilder.CreateBox("box", {faceUV: faceUV, wrap: true});
 
     // STEP 3a: Preview the result - noticing that the box is sunk into the ground
     // STEP 3b: Adjust the vertical position of the box (default box height is 1 size unit)
@@ -50,10 +55,13 @@ const createScene = async function() {
     box.rotation.y = BABYLON.Tools.ToRadians(45);
     // STEP 11: Add a texture to the walls of the house (the box) (https://www.babylonjs-playground.com/textures/floor.png)
     const boxMat = new BABYLON.StandardMaterial("boxMat");
-    boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/floor.png");
+    // boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/floor.png");
+    boxMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/semihouse.png");
     box.material = boxMat;
     // STEP 12a: Change the texture above to use an image with doors and windows instead
-    
+
+
+    //options parameter to set different images on each side
     // STEP 8a: Build a roof - using a cylinder mesh
     const roof = BABYLON.MeshBuilder.CreateCylinder("roof", {
         diameter: 2.8,
@@ -91,10 +99,10 @@ const createScene = async function() {
     initAudio();
     // STEP 15a: Set the above createScene() function to async (important, or this will not work)
     // STEP 15b: Create the xrHelper to allow the visitor to choose WebXR if they are able and they'd like
-    const xr = await scene.createDefaultXRExperienceAsync({
-        floorMeshes: [ground],
-        optionalFeatures: true
-    });
+    // const xr = await scene.createDefaultXRExperienceAsync({
+    //     floorMeshes: [ground],
+    //     optionalFeatures: true
+    // });
 
     // Return the scene
     return scene;
