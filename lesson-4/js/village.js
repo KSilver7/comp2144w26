@@ -105,7 +105,7 @@ const createScene = async function() {
     }
     initAudio();
 
-    // STEP 15a: Get a 3D model of a tree (https://free3d.com/3d-model/low_poly_tree-816203.html?dd_referrer=https%3A%2F%2Fstatics.teams.cdn.office.net%2F)
+    // STEP 15a: Get a 3D model of a tree (https://free3d.com/3d-model/low_poly_tree-816203.html)
     // STEP 15b: Convert mesh and material data to .glb file (https://convert3d.org/)
     // STEP 15c: Drop the tree into the scene
     const tree = BABYLON.SceneLoader.ImportMeshAsync("", "./meshes/", "Lowpoly_tree_sample.glb").then((result) => {
